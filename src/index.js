@@ -128,7 +128,7 @@ function spellIt(baseNumber) {
                 returnValue += (firstDigitString);
             }
             if (baseNumberString[5] > 0){ //ones
-                firstDigitString = searchOnes(baseNumberString[4]);
+                firstDigitString = searchOnes(baseNumberString[5]);
                 returnValue += (firstDigitString);
             }
             break
@@ -155,11 +155,11 @@ function spellIt(baseNumber) {
                 returnValue += (firstDigitString + hundredString);
             }
             if (baseNumberString[5] > 0){ //tens
-                firstDigitString = searchTens(baseNumberString[4]);
+                firstDigitString = searchTens(baseNumberString[5]);
                 returnValue += (firstDigitString);
             }
             if (baseNumberString[6] > 0){ //tens
-                firstDigitString = searchOnes(baseNumberString[4]);
+                firstDigitString = searchOnes(baseNumberString[6]);
                 returnValue += (firstDigitString);
             }
         
@@ -187,22 +187,57 @@ function spellIt(baseNumber) {
                 returnValue += (firstDigitString + thousandString);
             }
             if (baseNumberString[5] > 0){ //hundreds
-                firstDigitString = searchOnes(baseNumberString[4]);
+                firstDigitString = searchOnes(baseNumberString[5]);
                 returnValue += (firstDigitString + hundredString);
             }
             if (baseNumberString[6] > 0){ //tens
-                firstDigitString = searchTens(baseNumberString[4]);
+                firstDigitString = searchTens(baseNumberString[6]);
                 returnValue += (firstDigitString);
             }
             if (baseNumberString[7] > 0){ //Ones
-                firstDigitString = searchOnes(baseNumberString[4]);
+                firstDigitString = searchOnes(baseNumberString[7]);
                 returnValue += (firstDigitString);
             }
-        
-        
             break;
             
             default: //hundred millions
+            console.log("default")
+            firstDigitString = searchOnes(baseNumberString[0]); //hundred million
+            returnValue += (firstDigitString + hundredString+millionString);
+
+            if (baseNumberString[1] > 0){    // ten million
+                firstDigitString = searchTens(baseNumberString[1]);
+                returnValue += (firstDigitString +millionString);
+            }
+            if (baseNumberString[2] > 0){   // million thousand
+                firstDigitString = searchOnes(baseNumberString[2]);
+                returnValue += (firstDigitString + millionString);
+            }
+            
+            if (baseNumberString[3] > 0){ // hundred thousand
+                firstDigitString = searchOnes(baseNumberString[3]);
+                returnValue += (firstDigitString + hundredString+thousandString);
+            }
+            if (baseNumberString[4] > 0){ //ten thousand
+                firstDigitString = searchTens(baseNumberString[4]);
+                returnValue += (firstDigitString + thousandString);
+            }
+            if (baseNumberString[5] > 0){ //thousand
+                firstDigitString = searchOnes(baseNumberString[5]);
+                returnValue += (firstDigitString + thousandString);
+            }
+            if (baseNumberString[6] > 0){ //hundred
+                firstDigitString = searchOnes(baseNumberString[6]);
+                returnValue += (firstDigitString + hundredString);
+            }
+            if (baseNumberString[7] > 0){ //tens
+                firstDigitString = searchOnes(baseNumberString[7]);
+                returnValue += (firstDigitString);
+            }
+            if (baseNumberString[8] > 0){ //Ones
+                firstDigitString = searchOnes(baseNumberString[8]);
+                returnValue += (firstDigitString);
+            }
             break;
         }
         return (returnValue + "Dollars");
@@ -228,7 +263,7 @@ function searchTens (searchNumber){
 //var basenumber = 123;
 //console.log("XXX "+basenumber.length);
 
-var textIt = spellIt(41000000);
+var textIt = spellIt(800000001);
 
    console.log(textIt);
 
