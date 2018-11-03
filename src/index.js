@@ -30,86 +30,182 @@ maxRangeSum(trandingRangeStart, trandingRangeEnd, tradingResults);
 function spellIt(baseNumber) {
     const baseNumberString = baseNumber.toString();  
     const baseLength = (baseNumberString.length);
-//    console.log("XX " + baseNumberString[1]);
-    const hundredString = "hundred";
-    const millionString = "million";
-    const thousandString = "thousand";
+    const hundredString = "Hundred";
+    const millionString = "Million";
+    const thousandString = "Thousand";
     let returnValue = " ";
+    let firstDigitString = "";
     console.log("the value of baseNumber is = " + baseNumber + " and has a length of " + baseLength);
     
  //var returnValue;
 
         switch(baseLength){
             case 1:  //ones 
-            console.log("ones");
-            let oneString = searchOnes(baseNumber);
-            returnValue += oneString;
+            firstDigitString = searchOnes(baseNumber);
+            returnValue += firstDigitString;
             break;
-            case 2: //tens 
             
-            console.log("before the 10's call " + baseNumber);
+            case 2: //tens 
             let tenString = searchTens(baseNumberString[0]);
             returnValue += tenString;
             if (baseNumberString[1] > 0){
                 let oneString = searchOnes(baseNumberString[1]);
                 returnValue +=  oneString;
             }
-        
             break;
             case 3: //hundreds
-            console.log("hundreds");
-        //    call ones function
-            returnValue += /*return value from ones function */ hundredString;
-            //  call tens function
-         //   returnValue += //return value from tens function
+            firstDigitString = searchOnes(baseNumberString[0]);
+            returnValue += (firstDigitString + hundredString);
+            //returnValue += hundredString;
+            if (baseNumberString[1] > 0) {   //search for tens value
+                let returnTensString = searchTens(baseNumberString[1]);
+                returnValue +=  returnTensString;
+            }
+            if (baseNumberString[2 ] > 0) {   //search for ones value
+                let returnOnesString = searchOnes(baseNumberString[2]);
+                returnValue +=  returnOnesString;
+            }
+           
             break;
             case 4: //thousands
             console.log("thousands");
-            returnValue += /*return value from ones function*/  thousandString;
-        //    call ones function
-            returnValue += /*return value from ones function*/  hundredString;
-            //  call tens function
-         //   returnValue += //return value from tens function
+            firstDigitString = searchOnes(baseNumberString[0]);
+            returnValue += (firstDigitString+thousandString)
+            if (baseNumberString[1] > 0){
+                firstDigitString = searchOnes(baseNumberString[1]);
+                returnValue += (firstDigitString + hundredString);
+            }
+            if (baseNumberString[2] > 0){
+                firstDigitString = searchTens(baseNumberString[2]);
+                returnValue += (firstDigitString);
+            }
+            if (baseNumberString[3] > 0){
+                firstDigitString = searchOnes(baseNumberString[3]);
+                returnValue += (firstDigitString);
+            }
             break;
             case 5: //ten-thousands
-            console.log("ten-thousands");
-             //  call tens function
-              //  call  function
-        //    call ones function
-           returnValue += /*return value from ones function */  thousandString;
-           
-            returnValue += /*return value from ones function*/  hundredString;
-         //   returnValue += //return value from tens function
+            firstDigitString = searchTens(baseNumberString[0]); //ten-thousand
+            returnValue += (firstDigitString+thousandString)
+            if (baseNumberString[1] > 0){    // thousand
+                firstDigitString = searchOnes(baseNumberString[1]);
+                returnValue += (firstDigitString + thousandString);
+            }
+            if (baseNumberString[2] > 0){   //hundreds
+                firstDigitString = searchOnes(baseNumberString[2]);
+                returnValue += (firstDigitString + hundredString);
+            }
+            
+            if (baseNumberString[3] > 0){
+                firstDigitString = searchTens(baseNumberString[3]);
+                returnValue += (firstDigitString);
+            }
+            if (baseNumberString[4] > 0){
+                firstDigitString = searchOnes(baseNumberString[4]);
+                returnValue += (firstDigitString);
+            }
             break
             case 6: //hundred thousands
-            console.log("hundred-thousands");
-        //    call ones function
-                returnValue += /*return value from ones function*/  hundredString;
-            //  call tens functionds
-         //   returnValue += //return value from tens function
+        
+            firstDigitString = searchOnes(baseNumberString[0]); //Hundred-thousand
+            returnValue += (firstDigitString + hundredString + thousandString);
+
+            if (baseNumberString[1] > 0){    // ten thousand
+                firstDigitString = searchTens(baseNumberString[1]);
+                returnValue += (firstDigitString + thousandString);
+            }
+            if (baseNumberString[2] > 0){   //thousands
+                firstDigitString = searchOnes(baseNumberString[2]);
+                returnValue += (firstDigitString + thousandString);
+            }
+            
+            if (baseNumberString[3] > 0){ //hundreds
+                firstDigitString = searchOnes(baseNumberString[3]);
+                returnValue += (firstDigitString + hundredString);
+            }
+            if (baseNumberString[4] > 0){ //tens
+                firstDigitString = searchTens(baseNumberString[4]);
+                returnValue += (firstDigitString);
+            }
+            if (baseNumberString[5] > 0){ //ones
+                firstDigitString = searchOnes(baseNumberString[4]);
+                returnValue += (firstDigitString);
+            }
             break
             case 7: //millions
             console.log("millions");
-        //    call ones function
-            returnValue += /*return value from ones function*/  millionString;
-            returnValue += /*return value from ones function */  thousandString;
-            returnValue += /*return value from ones function*/  hundredString;
-            //  call tens function
-         //   returnValue += //return value from tens function
+            firstDigitString = searchOnes(baseNumberString[0]); //million
+            returnValue += (firstDigitString + millionString);
+
+            if (baseNumberString[1] > 0){    // hundred thousand
+                firstDigitString = searchOnes(baseNumberString[1]);
+                returnValue += (firstDigitString +hundredString +thousandString);
+            }
+            if (baseNumberString[2] > 0){   // tenthousands
+                firstDigitString = searchTens(baseNumberString[2]);
+                returnValue += (firstDigitString + thousandString);
+            }
+            
+            if (baseNumberString[3] > 0){ //thousand
+                firstDigitString = searchOnes(baseNumberString[3]);
+                returnValue += (firstDigitString + thousandString);
+            }
+            if (baseNumberString[4] > 0){ //hundreds
+                firstDigitString = searchOnes(baseNumberString[4]);
+                returnValue += (firstDigitString + hundredString);
+            }
+            if (baseNumberString[5] > 0){ //tens
+                firstDigitString = searchTens(baseNumberString[4]);
+                returnValue += (firstDigitString);
+            }
+            if (baseNumberString[6] > 0){ //tens
+                firstDigitString = searchOnes(baseNumberString[4]);
+                returnValue += (firstDigitString);
+            }
+        
             break
             case 8: //ten million
-            console.log("tem-million");
-        //    call ones function
-         //   returnValue += //return value from ones function + "hundred";
-            //  call tens function
-         //   returnValue += //return value from tens function
+            console.log("ten-million");
+            firstDigitString = searchTens(baseNumberString[0]); //ten million
+            returnValue += (firstDigitString + millionString);
+
+            if (baseNumberString[1] > 0){    // one million
+                firstDigitString = searchOnes(baseNumberString[1]);
+                returnValue += (firstDigitString +millionString);
+            }
+            if (baseNumberString[2] > 0){   // hundred thousand
+                firstDigitString = searchOnes(baseNumberString[2]);
+                returnValue += (firstDigitString + hundredString +thousandString);
+            }
+            
+            if (baseNumberString[3] > 0){ // ten thousand
+                firstDigitString = searchTens(baseNumberString[3]);
+                returnValue += (firstDigitString + thousandString);
+            }
+            if (baseNumberString[4] > 0){ //thousand
+                firstDigitString = searchOnes(baseNumberString[4]);
+                returnValue += (firstDigitString + thousandString);
+            }
+            if (baseNumberString[5] > 0){ //hundreds
+                firstDigitString = searchOnes(baseNumberString[4]);
+                returnValue += (firstDigitString + hundredString);
+            }
+            if (baseNumberString[6] > 0){ //tens
+                firstDigitString = searchTens(baseNumberString[4]);
+                returnValue += (firstDigitString);
+            }
+            if (baseNumberString[7] > 0){ //Ones
+                firstDigitString = searchOnes(baseNumberString[4]);
+                returnValue += (firstDigitString);
+            }
+        
+        
             break;
             
             default: //hundred millions
             break;
         }
-            console.log("**the retun value is = ** " + returnValue);
-        return returnValue;
+        return (returnValue + "Dollars");
 
         function searchOnes (searchNumber){
         let searchNumberNum = parseInt(searchNumber,10);
@@ -132,7 +228,7 @@ function searchTens (searchNumber){
 //var basenumber = 123;
 //console.log("XXX "+basenumber.length);
 
-var textIt = spellIt(32);
+var textIt = spellIt(41000000);
 
-   // console.log(textIt);
+   console.log(textIt);
 
