@@ -10,7 +10,10 @@ function maxRangeSum(tradingRangeStart, tradingRangeEnd, tradingResults){
     var numTradingDays = tradingRangeEnd  - adjStart;
     
     var results = tradingResults.splice(adjStart, numTradingDays);
-    const sum = results.reduce((total, amount) => total + amount); 
+    const sum = results.reduce((total, amount) => total + amount);
+
+    console.log("******************** Test Question 1 results ***************************")
+
     if (sum > 0 ){
         console.log("The gain for the period is " + sum);
     }
@@ -34,209 +37,214 @@ function spellIt(baseNumber) {
     const millionString = "Million";
     const thousandString = "Thousand";
     let returnValue = " ";
-    let firstDigitString = "";
-    console.log("the value of baseNumber is = " + baseNumber + " and has a length of " + baseLength);
+    let returnString = "";
+
     
  //var returnValue;
 
         switch(baseLength){
             case 1:  //ones 
-            firstDigitString = searchOnes(baseNumber);
-            returnValue += firstDigitString;
+            returnString = searchOnes(baseNumber);
+            returnValue += returnString;
             break;
             
             case 2: //tens 
-            let tenString = searchTens(baseNumberString[0]);
-            returnValue += tenString;
-            if (baseNumberString[1] > 0){
-                let oneString = searchOnes(baseNumberString[1]);
-                returnValue +=  oneString;
+            if (baseNumberString[0] === "1"){  //check for 11, 12, 13, 14 etc
+                returnString = searchTeens(baseNumberString[1]);
+                returnValue +=  returnString;
             }
+            else{   //check for 10, 20, 30 etc
+            returnString = searchTens(baseNumberString[0]);
+            returnValue += returnString;
+            if (baseNumberString[1] > "0"){  // check for ones
+                returnString = searchOnes(baseNumberString[1]);
+                returnValue +=  returnString;
+            }
+        }
             break;
             case 3: //hundreds
-            firstDigitString = searchOnes(baseNumberString[0]);
-            returnValue += (firstDigitString + hundredString);
-            //returnValue += hundredString;
-            if (baseNumberString[1] > 0) {   //search for tens value
-                let returnTensString = searchTens(baseNumberString[1]);
-                returnValue +=  returnTensString;
+            returnString = searchOnes(baseNumberString[0]);
+            returnValue += (returnString + hundredString);
+
+            if (baseNumberString[0] === "1"){
+                returnString = searchTeens(baseNumberString[1]);
+                returnValue +=  returnString;
             }
-            if (baseNumberString[2 ] > 0) {   //search for ones value
-                let returnOnesString = searchOnes(baseNumberString[2]);
-                returnValue +=  returnOnesString;
+            else{
+            returnString = searchTens(baseNumberString[0]);
+            returnValue += returnString;
+            if (baseNumberString[1] > "0"){
+                returnString = searchOnes(baseNumberString[1]);
+                returnValue +=  returnString;
+             }
             }
-           
             break;
             case 4: //thousands
-            console.log("thousands");
-            firstDigitString = searchOnes(baseNumberString[0]);
-            returnValue += (firstDigitString+thousandString)
-            if (baseNumberString[1] > 0){
-                firstDigitString = searchOnes(baseNumberString[1]);
-                returnValue += (firstDigitString + hundredString);
+            returnString = searchOnes(baseNumberString[0]);
+            returnValue += (returnString+thousandString)
+            if (baseNumberString[1] > 0){  //hundreds
+                returnString = searchOnes(baseNumberString[1]);
+                returnValue += (returnString + hundredString);
             }
-            if (baseNumberString[2] > 0){
-                firstDigitString = searchTens(baseNumberString[2]);
-                returnValue += (firstDigitString);
+            if (baseNumberString[2] > 0){ //tens
+                returnString = searchTens(baseNumberString[2]);
+                returnValue += (returnString);
             }
-            if (baseNumberString[3] > 0){
-                firstDigitString = searchOnes(baseNumberString[3]);
-                returnValue += (firstDigitString);
+            if (baseNumberString[3] > 0){ //ones
+                returnString = searchOnes(baseNumberString[3]);
+                returnValue += (returnString);
             }
             break;
             case 5: //ten-thousands
-            firstDigitString = searchTens(baseNumberString[0]); //ten-thousand
-            returnValue += (firstDigitString+thousandString)
+            returnString = searchTens(baseNumberString[0]); //ten-thousand
+            returnValue += (returnString+thousandString)
             if (baseNumberString[1] > 0){    // thousand
-                firstDigitString = searchOnes(baseNumberString[1]);
-                returnValue += (firstDigitString + thousandString);
+                returnString = searchOnes(baseNumberString[1]);
+                returnValue += (returnString + thousandString);
             }
             if (baseNumberString[2] > 0){   //hundreds
-                firstDigitString = searchOnes(baseNumberString[2]);
-                returnValue += (firstDigitString + hundredString);
+                returnString = searchOnes(baseNumberString[2]);
+                returnValue += (returnString + hundredString);
             }
             
             if (baseNumberString[3] > 0){
-                firstDigitString = searchTens(baseNumberString[3]);
-                returnValue += (firstDigitString);
+                returnString = searchTens(baseNumberString[3]);
+                returnValue += (returnString);
             }
             if (baseNumberString[4] > 0){
-                firstDigitString = searchOnes(baseNumberString[4]);
-                returnValue += (firstDigitString);
+                returnString = searchOnes(baseNumberString[4]);
+                returnValue += (returnString);
             }
             break
             case 6: //hundred thousands
         
-            firstDigitString = searchOnes(baseNumberString[0]); //Hundred-thousand
-            returnValue += (firstDigitString + hundredString + thousandString);
+            returnString = searchOnes(baseNumberString[0]); //Hundred-thousand
+            returnValue += (returnString + hundredString + thousandString);
 
             if (baseNumberString[1] > 0){    // ten thousand
-                firstDigitString = searchTens(baseNumberString[1]);
-                returnValue += (firstDigitString + thousandString);
+                returnString = searchTens(baseNumberString[1]);
+                returnValue += (returnString + thousandString);
             }
             if (baseNumberString[2] > 0){   //thousands
-                firstDigitString = searchOnes(baseNumberString[2]);
-                returnValue += (firstDigitString + thousandString);
+                returnString = searchOnes(baseNumberString[2]);
+                returnValue += (returnString + thousandString);
             }
             
             if (baseNumberString[3] > 0){ //hundreds
-                firstDigitString = searchOnes(baseNumberString[3]);
-                returnValue += (firstDigitString + hundredString);
+                returnString = searchOnes(baseNumberString[3]);
+                returnValue += (returnString + hundredString);
             }
             if (baseNumberString[4] > 0){ //tens
-                firstDigitString = searchTens(baseNumberString[4]);
-                returnValue += (firstDigitString);
+                returnString = searchTens(baseNumberString[4]);
+                returnValue += (returnString);
             }
             if (baseNumberString[5] > 0){ //ones
-                firstDigitString = searchOnes(baseNumberString[5]);
-                returnValue += (firstDigitString);
+                returnString = searchOnes(baseNumberString[5]);
+                returnValue += (returnString);
             }
             break
             case 7: //millions
-            console.log("millions");
-            firstDigitString = searchOnes(baseNumberString[0]); //million
-            returnValue += (firstDigitString + millionString);
+            returnString = searchOnes(baseNumberString[0]); //million
+            returnValue += (returnString + millionString);
 
             if (baseNumberString[1] > 0){    // hundred thousand
-                firstDigitString = searchOnes(baseNumberString[1]);
-                returnValue += (firstDigitString +hundredString +thousandString);
+                returnString = searchOnes(baseNumberString[1]);
+                returnValue += (returnString +hundredString +thousandString);
             }
             if (baseNumberString[2] > 0){   // tenthousands
-                firstDigitString = searchTens(baseNumberString[2]);
-                returnValue += (firstDigitString + thousandString);
+                returnString = searchTens(baseNumberString[2]);
+                returnValue += (returnString + thousandString);
             }
             
             if (baseNumberString[3] > 0){ //thousand
-                firstDigitString = searchOnes(baseNumberString[3]);
-                returnValue += (firstDigitString + thousandString);
+                returnString = searchOnes(baseNumberString[3]);
+                returnValue += (returnString + thousandString);
             }
             if (baseNumberString[4] > 0){ //hundreds
-                firstDigitString = searchOnes(baseNumberString[4]);
-                returnValue += (firstDigitString + hundredString);
+                returnString = searchOnes(baseNumberString[4]);
+                returnValue += (returnString + hundredString);
             }
             if (baseNumberString[5] > 0){ //tens
-                firstDigitString = searchTens(baseNumberString[5]);
-                returnValue += (firstDigitString);
+                returnString = searchTens(baseNumberString[5]);
+                returnValue += (returnString);
             }
             if (baseNumberString[6] > 0){ //tens
-                firstDigitString = searchOnes(baseNumberString[6]);
-                returnValue += (firstDigitString);
+                returnString = searchOnes(baseNumberString[6]);
+                returnValue += (returnString);
             }
         
             break
             case 8: //ten million
-            console.log("ten-million");
-            firstDigitString = searchTens(baseNumberString[0]); //ten million
-            returnValue += (firstDigitString + millionString);
+            returnString = searchTens(baseNumberString[0]); //ten million
+            returnValue += (returnString + millionString);
 
             if (baseNumberString[1] > 0){    // one million
-                firstDigitString = searchOnes(baseNumberString[1]);
-                returnValue += (firstDigitString +millionString);
+                returnString = searchOnes(baseNumberString[1]);
+                returnValue += (returnString +millionString);
             }
             if (baseNumberString[2] > 0){   // hundred thousand
-                firstDigitString = searchOnes(baseNumberString[2]);
-                returnValue += (firstDigitString + hundredString +thousandString);
+                returnString = searchOnes(baseNumberString[2]);
+                returnValue += (returnString + hundredString +thousandString);
             }
             
             if (baseNumberString[3] > 0){ // ten thousand
-                firstDigitString = searchTens(baseNumberString[3]);
-                returnValue += (firstDigitString + thousandString);
+                returnString = searchTens(baseNumberString[3]);
+                returnValue += (returnString + thousandString);
             }
             if (baseNumberString[4] > 0){ //thousand
-                firstDigitString = searchOnes(baseNumberString[4]);
-                returnValue += (firstDigitString + thousandString);
+                returnString = searchOnes(baseNumberString[4]);
+                returnValue += (returnString + thousandString);
             }
             if (baseNumberString[5] > 0){ //hundreds
-                firstDigitString = searchOnes(baseNumberString[5]);
-                returnValue += (firstDigitString + hundredString);
+                returnString = searchOnes(baseNumberString[5]);
+                returnValue += (returnString + hundredString);
             }
             if (baseNumberString[6] > 0){ //tens
-                firstDigitString = searchTens(baseNumberString[6]);
-                returnValue += (firstDigitString);
+                returnString = searchTens(baseNumberString[6]);
+                returnValue += (returnString);
             }
             if (baseNumberString[7] > 0){ //Ones
-                firstDigitString = searchOnes(baseNumberString[7]);
-                returnValue += (firstDigitString);
+                returnString = searchOnes(baseNumberString[7]);
+                returnValue += (returnString);
             }
             break;
             
             default: //hundred millions
-            console.log("default")
-            firstDigitString = searchOnes(baseNumberString[0]); //hundred million
-            returnValue += (firstDigitString + hundredString+millionString);
+            returnString = searchOnes(baseNumberString[0]); //hundred million
+            returnValue += (returnString + hundredString+millionString);
 
             if (baseNumberString[1] > 0){    // ten million
-                firstDigitString = searchTens(baseNumberString[1]);
-                returnValue += (firstDigitString +millionString);
+                returnString = searchTens(baseNumberString[1]);
+                returnValue += (returnString +millionString);
             }
             if (baseNumberString[2] > 0){   // million thousand
-                firstDigitString = searchOnes(baseNumberString[2]);
-                returnValue += (firstDigitString + millionString);
+                returnString = searchOnes(baseNumberString[2]);
+                returnValue += (returnString + millionString);
             }
             
             if (baseNumberString[3] > 0){ // hundred thousand
-                firstDigitString = searchOnes(baseNumberString[3]);
-                returnValue += (firstDigitString + hundredString+thousandString);
+                returnString = searchOnes(baseNumberString[3]);
+                returnValue += (returnString + hundredString+thousandString);
             }
             if (baseNumberString[4] > 0){ //ten thousand
-                firstDigitString = searchTens(baseNumberString[4]);
-                returnValue += (firstDigitString + thousandString);
+                returnString = searchTens(baseNumberString[4]);
+                returnValue += (returnString + thousandString);
             }
             if (baseNumberString[5] > 0){ //thousand
-                firstDigitString = searchOnes(baseNumberString[5]);
-                returnValue += (firstDigitString + thousandString);
+                returnString = searchOnes(baseNumberString[5]);
+                returnValue += (returnString + thousandString);
             }
             if (baseNumberString[6] > 0){ //hundred
-                firstDigitString = searchOnes(baseNumberString[6]);
-                returnValue += (firstDigitString + hundredString);
+                returnString = searchOnes(baseNumberString[6]);
+                returnValue += (returnString + hundredString);
             }
             if (baseNumberString[7] > 0){ //tens
-                firstDigitString = searchOnes(baseNumberString[7]);
-                returnValue += (firstDigitString);
+                returnString = searchOnes(baseNumberString[7]);
+                returnValue += (returnString);
             }
             if (baseNumberString[8] > 0){ //Ones
-                firstDigitString = searchOnes(baseNumberString[8]);
-                returnValue += (firstDigitString);
+                returnString = searchOnes(baseNumberString[8]);
+                returnValue += (returnString);
             }
             break;
         }
@@ -251,19 +259,31 @@ function spellIt(baseNumber) {
      
 }
 
-function searchTens (searchNumber){
-    let searchNumberNum = parseInt(searchNumber,10);
-    const tensValues = ["Ten", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"];
-     let tensResult = tensValues[searchNumberNum -1];  
-    return tensResult;
-}
+        function searchTens (searchNumber){
+            
+            let searchNumberNum = parseInt(searchNumber,10);
+            const tensValues = ["Ten", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"];
+            let tensResult = tensValues[searchNumberNum -1];  
+            return tensResult;
+        }
+
+        function searchTeens (searchNumber){
+            
+            let searchNumberNum = parseInt(searchNumber,10);
+            const teensValues = ["eleven", "tweleve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen" ]
+            let teensResult = teensValues[searchNumberNum -1];  
+            return teensResult;
+        }
        
 }  
 
-//var basenumber = 123;
-//console.log("XXX "+basenumber.length);
+var testCase1 = 3;
+var testCase2 = 466;
+var testCase3 = 1234;
+var testCase4 = 19;
+var testCase5 = 21;
 
-var textIt = spellIt(800000001);
-
+var textIt = spellIt(testCase4);
+   console.log("******************** Test Question 2 results ***************************")
    console.log(textIt);
 
