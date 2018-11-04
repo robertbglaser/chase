@@ -49,11 +49,11 @@ function spellIt(baseNumber) {
             break;
             
             case 2: //tens 
-            if (baseNumberString[0] === "1"){  //check for 11, 12, 13, 14 etc
-                returnString = searchTeens(baseNumberString[1]);
+            if (baseNumberString[0] === "1"){  //check for
+                returnString = searchTeens(baseNumberString[0]);
                 returnValue +=  returnString;
             }
-            else{   //check for 10, 20, 30 etc
+            else{   //check for 20, 30 etc
             returnString = searchTens(baseNumberString[0]);
             returnValue += returnString;
             if (baseNumberString[1] > "0"){  // check for ones
@@ -66,15 +66,15 @@ function spellIt(baseNumber) {
             returnString = searchOnes(baseNumberString[0]);
             returnValue += (returnString + hundredString);
 
-            if (baseNumberString[0] === "1"){
+            if (baseNumberString[1] === "1"){ //check for teens
                 returnString = searchTeens(baseNumberString[1]);
                 returnValue +=  returnString;
             }
             else{
-            returnString = searchTens(baseNumberString[0]);
+            returnString = searchTens(baseNumberString[1]);
             returnValue += returnString;
-            if (baseNumberString[1] > "0"){
-                returnString = searchOnes(baseNumberString[1]);
+            if (baseNumberString[2] > "0"){
+                returnString = searchOnes(baseNumberString[2]);
                 returnValue +=  returnString;
              }
             }
@@ -86,13 +86,17 @@ function spellIt(baseNumber) {
                 returnString = searchOnes(baseNumberString[1]);
                 returnValue += (returnString + hundredString);
             }
-            if (baseNumberString[2] > 0){ //tens
-                returnString = searchTens(baseNumberString[2]);
-                returnValue += (returnString);
+            if (baseNumberString[2] === "1"){  //check for teens
+                returnString = searchTeens(baseNumberString[2]);
+                returnValue +=  returnString;
             }
-            if (baseNumberString[3] > 0){ //ones
-                returnString = searchOnes(baseNumberString[3]);
-                returnValue += (returnString);
+            else{   //check for 10, 20, 30 etc
+                returnString = searchTens(baseNumberString[2]);
+                returnValue += returnString;
+                if (baseNumberString[3] > "0"){  // check for ones
+                    returnString = searchOnes(baseNumberString[3]);
+                    returnValue +=  returnString;
+                }
             }
             break;
             case 5: //ten-thousands
@@ -107,14 +111,18 @@ function spellIt(baseNumber) {
                 returnValue += (returnString + hundredString);
             }
             
-            if (baseNumberString[3] > 0){
+            if (baseNumberString[3] === "1"){  //check for teens
+                returnString = searchTeens(baseNumberString[3]);
+                returnValue +=  returnString;
+            }
+            else{   //check for 10, 20, 30 etc
                 returnString = searchTens(baseNumberString[3]);
-                returnValue += (returnString);
-            }
-            if (baseNumberString[4] > 0){
-                returnString = searchOnes(baseNumberString[4]);
-                returnValue += (returnString);
-            }
+                returnValue += returnString;
+                if (baseNumberString[4] > "0"){  // check for ones
+                    returnString = searchOnes(baseNumberString[4]);
+                    returnValue +=  returnString;
+                }
+             }
             break
             case 6: //hundred thousands
         
@@ -134,13 +142,17 @@ function spellIt(baseNumber) {
                 returnString = searchOnes(baseNumberString[3]);
                 returnValue += (returnString + hundredString);
             }
-            if (baseNumberString[4] > 0){ //tens
-                returnString = searchTens(baseNumberString[4]);
-                returnValue += (returnString);
+            if (baseNumberString[4] === "1"){  //check for teens
+                returnString = searchTeens(baseNumberString[4]);
+                returnValue +=  returnString;
             }
-            if (baseNumberString[5] > 0){ //ones
+            else{   //check for 10, 20, 30 etc
+            returnString = searchTens(baseNumberString[4]);
+            returnValue += returnString;
+            if (baseNumberString[5] > "0"){  // check for ones
                 returnString = searchOnes(baseNumberString[5]);
-                returnValue += (returnString);
+                returnValue +=  returnString;
+            }
             }
             break
             case 7: //millions
@@ -164,13 +176,17 @@ function spellIt(baseNumber) {
                 returnString = searchOnes(baseNumberString[4]);
                 returnValue += (returnString + hundredString);
             }
-            if (baseNumberString[5] > 0){ //tens
-                returnString = searchTens(baseNumberString[5]);
-                returnValue += (returnString);
+            if (baseNumberString[5] === "1"){  //check for teens
+                returnString = searchTeens(baseNumberString[5]);
+                returnValue +=  returnString;
             }
-            if (baseNumberString[6] > 0){ //tens
+            else{   //check for 10, 20, 30 etc
+            returnString = searchTens(baseNumberString[5]);
+            returnValue += returnString;
+            if (baseNumberString[6] > "0"){  // check for ones
                 returnString = searchOnes(baseNumberString[6]);
-                returnValue += (returnString);
+                returnValue +=  returnString;
+            }
             }
         
             break
@@ -199,13 +215,17 @@ function spellIt(baseNumber) {
                 returnString = searchOnes(baseNumberString[5]);
                 returnValue += (returnString + hundredString);
             }
-            if (baseNumberString[6] > 0){ //tens
-                returnString = searchTens(baseNumberString[6]);
-                returnValue += (returnString);
+            if (baseNumberString[6] === "1"){  //check for teens
+                returnString = searchTeens(baseNumberString[6]);
+                returnValue +=  returnString;
             }
-            if (baseNumberString[7] > 0){ //Ones
+            else{   //check for 10, 20, 30 etc
+            returnString = searchTens(baseNumberString[6]);
+            returnValue += returnString;
+            if (baseNumberString[7] > "0"){  // check for ones
                 returnString = searchOnes(baseNumberString[7]);
-                returnValue += (returnString);
+                returnValue +=  returnString;
+            }
             }
             break;
             
@@ -217,7 +237,7 @@ function spellIt(baseNumber) {
                 returnString = searchTens(baseNumberString[1]);
                 returnValue += (returnString +millionString);
             }
-            if (baseNumberString[2] > 0){   // million thousand
+            if (baseNumberString[2] > 0){   // million
                 returnString = searchOnes(baseNumberString[2]);
                 returnValue += (returnString + millionString);
             }
@@ -238,14 +258,17 @@ function spellIt(baseNumber) {
                 returnString = searchOnes(baseNumberString[6]);
                 returnValue += (returnString + hundredString);
             }
-            if (baseNumberString[7] > 0){ //tens
-                returnString = searchOnes(baseNumberString[7]);
-                returnValue += (returnString);
+            if (baseNumberString[7] === "1"){  //check for teens
+                returnString = searchTeens(baseNumberString[7]);
+                returnValue +=  returnString;
             }
-            if (baseNumberString[8] > 0){ //Ones
+            else{   //check for 10, 20, 30 etc
+            returnString = searchTens(baseNumberString[7]);
+            returnValue += returnString;
+            if (baseNumberString[8] > "0"){  // check for ones
                 returnString = searchOnes(baseNumberString[8]);
-                returnValue += (returnString);
-            }
+                returnValue +=  returnString;
+            }}
             break;
         }
         return (returnValue + "Dollars");
@@ -255,8 +278,6 @@ function spellIt(baseNumber) {
         const onesValues = ["One", "Two", "Three", "Four",  "Five", "Six","Seven", "Eight","Nine"];
         let searchResult = onesValues[searchNumberNum -1]; 
         return searchResult;
-
-     
 }
 
         function searchTens (searchNumber){
@@ -270,7 +291,7 @@ function spellIt(baseNumber) {
         function searchTeens (searchNumber){
             
             let searchNumberNum = parseInt(searchNumber,10);
-            const teensValues = ["eleven", "tweleve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen" ]
+            const teensValues = ["ten","eleven", "tweleve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen" ]
             let teensResult = teensValues[searchNumberNum -1];  
             return teensResult;
         }
@@ -280,7 +301,7 @@ function spellIt(baseNumber) {
 var testCase1 = 3;
 var testCase2 = 466;
 var testCase3 = 1234;
-var testCase4 = 19;
+var testCase4 = 10;
 var testCase5 = 21;
 
 var textIt = spellIt(testCase4);
