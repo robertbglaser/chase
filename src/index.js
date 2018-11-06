@@ -308,3 +308,4 @@ var textIt = spellIt(testCase4);
    console.log("******************** Test Question 2 results ***************************")
    console.log(textIt);
 
+   
